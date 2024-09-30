@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using Google.Api.Gax.ResourceNames;
+using Microsoft.Win32;
 using schoolServiceUchebkaMukachev.DB;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,8 @@ namespace schoolServiceUchebkaMukachev.Pages
     {
         private Service ser;
         private string selectedImagePath;
-        int charactersToRemove = 61; // Количество символов для удаления в начале строки
+        int charactersToRemove = 61;
+        public string folderName = "Услуги школы";
         public EditPage(Service service)
         {
             ser = service;
@@ -66,13 +68,15 @@ namespace schoolServiceUchebkaMukachev.Pages
             };
             if (openFileDialog.ShowDialog().GetValueOrDefault())
             {
-
                 selectedImagePath = openFileDialog.FileName;
-                if (!string.IsNullOrEmpty(selectedImagePath) && selectedImagePath.Length >= charactersToRemove)
+                // Ищем индекс папки "Услуги школы" и обрезаем строку
+                int index = selectedImagePath.IndexOf(folderName);
+                if (index != -1)
                 {
-                    selectedImagePath = selectedImagePath.Substring(charactersToRemove);
+                    string result = selectedImagePath.Substring(index); selectedImagePath = result;
                 }
                 ImageService.Source = new BitmapImage(new Uri(openFileDialog.FileName));
+
             }
         }
     }
