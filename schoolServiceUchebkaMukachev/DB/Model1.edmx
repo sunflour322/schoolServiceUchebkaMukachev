@@ -113,7 +113,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Service_ServicePhoto">
-          <End Role="ServicePhoto" Type="Self.ServicePhoto" Multiplicity="0..1" />
+          <End Role="ServicePhoto" Type="Self.ServicePhoto" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Service" Type="Self.Service" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ServicePhoto">
@@ -301,7 +303,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Service_ServicePhoto">
-          <End Role="ServicePhoto" Type="Self.ServicePhoto" Multiplicity="0..1" />
+          <End Role="ServicePhoto" Type="Self.ServicePhoto" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Service" Type="Self.Service" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ServicePhoto">

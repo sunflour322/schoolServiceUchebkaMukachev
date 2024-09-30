@@ -64,6 +64,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\ServiceUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -71,6 +75,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\ServiceUserControl.xaml.cs">
+      <DependentUpon>ServiceUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="DB\Admin.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -118,8 +125,22 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\EditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\EditPage.xaml.cs">
+      <DependentUpon>EditPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -154,22 +175,38 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resource\Услуги школы\for company.jpg" />
+    <Resource Include="Resource\Услуги школы\online lessons.jpg" />
+    <Resource Include="Resource\Услуги школы\Английский язык.jpg" />
+    <Resource Include="Resource\Услуги школы\Испанский язык.jpg" />
+    <Resource Include="Resource\Услуги школы\Итальянский язык.jpg" />
+    <Resource Include="Resource\Услуги школы\киноклуб.jpg" />
+    <Resource Include="Resource\Услуги школы\Китайский язык.jpg" />
+    <Resource Include="Resource\Услуги школы\Немецкий язык.png" />
+    <Resource Include="Resource\Услуги школы\Подготовка к экзамену ACT.png" />
+    <Resource Include="Resource\Услуги школы\Подготовка к экзамену GMAT.png" />
+    <Resource Include="Resource\Услуги школы\Подготовка к экзамену GRE.jpeg" />
+    <Resource Include="Resource\Услуги школы\Подготовка к экзамену IELTS.jpg" />
+    <Resource Include="Resource\Услуги школы\Подготовка к экзамену SAT.png" />
+    <Resource Include="Resource\Услуги школы\Подготовка к экзамену TOEFL.jpg" />
+    <Resource Include="Resource\Услуги школы\Португальский язык.jpg" />
+    <Resource Include="Resource\Услуги школы\Французский язык.jpg" />
+    <Resource Include="Resource\Услуги школы\Японский язык.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="DB\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
     <Content Include="DB\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
