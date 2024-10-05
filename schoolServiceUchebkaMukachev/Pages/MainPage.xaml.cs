@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using schoolServiceUchebkaMukachev.Controls;
+using schoolServiceUchebkaMukachev.DB;
 
 namespace schoolServiceUchebkaMukachev.Pages
 {
@@ -25,19 +26,65 @@ namespace schoolServiceUchebkaMukachev.Pages
         public MainPage()
         {
             InitializeComponent();
-            OnItemRemoved = () =>
-            {
-                UpdatePage();
-            };
-            UpdatePage();
+            DiscountRs.Minimum = Convert.ToDouble(App.db.Service.Min(i => i.Discount));
+            DiscountRs.Maximum = Convert.ToDouble(App.db.Service.Max(i => i.Discount));
+            DiscountRs.UpperValue = DiscountRs.Maximum;
+            DiscountRs.LowerValue = DiscountRs.Minimum;
+            //OnItemRemoved = () =>
+            //{
+            //    UpdatePage();
+            //};
+            //UpdatePage();
         }
-        public void UpdatePage()
+        //public void UpdatePage()
+        //{
+          
+
+        //    ServiceWpar.Children.Clear();
+        //    foreach (var item in App.db.Service)
+        //    {
+        //        ServiceWpar.Children.Add(new ServiceUserControl(item, OnItemRemoved));
+        //    }
+        //}
+
+        private void Create_Button_Click(object sender, RoutedEventArgs e)
         {
+            NavigationService.Navigate(new CreatePage());
+        }
+
+        private void DiscountRs_RangeSelectionChanged(object sender, MahApps.Metro.Controls.RangeSelectionChangedEventArgs<double> e)
+        {
+
+        }
+
+        
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var comboBox = sender as ComboBox;
+            if (comboBox == null) return; // Защита от ошибок при неверном приведении типов
+
+            var selectedSortOption = comboBox.SelectedItem?.ToString(); // Используйте оператор ?. для предотвращения ошибок при нулевом значении
+
+            IEnumerable<Service> sortedServices;
+
+            switch (selectedSortOption)
+            {
+                case "По цене (возрастание)":
+                    sortedServices = App.db.Service.OrderBy(service => service.Cost);
+                    break;
+                case "По цене (убывание)":
+                    sortedServices = App.db.Service.OrderByDescending(service => service.Cost);
+                    break;
+                
+            }
+
             ServiceWpar.Children.Clear();
             foreach (var item in App.db.Service)
             {
                 ServiceWpar.Children.Add(new ServiceUserControl(item, OnItemRemoved));
             }
+
         }
     }
 }

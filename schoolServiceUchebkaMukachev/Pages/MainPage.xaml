@@ -3,15 +3,17 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
       xmlns:local="clr-namespace:schoolServiceUchebkaMukachev.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="1080" d:DesignWidth="720"
+      d:DesignHeight="900" d:DesignWidth="720"
       Title="MainPage">
 
     <Grid Background="#ffffff">
         <Grid.RowDefinitions>
             <RowDefinition Height="5*"/>
-            <RowDefinition Height="39*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
 
         <Border Grid.Row="0" BorderBrush="#04a0ff" BorderThickness="1.5" Margin="5">
@@ -23,6 +25,18 @@
                 <WrapPanel Name ="ServiceWpar" HorizontalAlignment="Center" ItemHeight="230" ItemWidth="680"/>
             </ScrollViewer>
         </Border>
-        
+        <Border Grid.Row="2"  BorderBrush="#04a0ff" BorderThickness="1.5" Margin="5">
+            <StackPanel Orientation="Horizontal" >
+                <Button VerticalAlignment="Top" Width="150" Height="50" Content="Добавить" Click="Create_Button_Click" HorizontalAlignment="Left" Margin="20"></Button>
+                
+                <StackPanel Margin="200 15 0 0" Orientation="Vertical">
+                    <ComboBox Margin="0 0 0 20" Width="150" x:Name="PriceCb" HorizontalAlignment="Right" SelectionChanged="ComboBox_SelectionChanged">
+                        <Label>по возрастанию</Label>
+                        <Label>по убыванию</Label>
+                    </ComboBox>
+                    <controls:RangeSlider Width="280" x:Name="DiscountRs" RangeSelectionChanged="DiscountRs_RangeSelectionChanged" AutoToolTipPlacement="TopLeft"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
     </Grid>
 </Page>

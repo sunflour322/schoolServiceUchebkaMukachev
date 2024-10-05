@@ -1,5 +1,4 @@
-﻿using Google.Api.Gax.ResourceNames;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using schoolServiceUchebkaMukachev.DB;
 using System;
 using System.Collections.Generic;
@@ -20,28 +19,15 @@ using System.Windows.Shapes;
 namespace schoolServiceUchebkaMukachev.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для EditPage.xaml
+    /// Логика взаимодействия для CreatePage.xaml
     /// </summary>
-    public partial class EditPage : Page
+    public partial class CreatePage : Page
     {
-        private Service ser;
         private string selectedImagePath;
         public string folderName = "Услуги школы";
-        public EditPage(Service service)
+        public CreatePage()
         {
-            ser = service;
             InitializeComponent();
-            var imagesBD = App.db.ServicePhoto.FirstOrDefault(x => x.ID == ser.ServicePhotoID).PhotoPath.ToString();
-            string folderName = "schoolServiceUchebkaMukachev/Resource";
-            string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
-            string fullPath = System.IO.Path.Combine(projectDirectory, folderName, imagesBD);
-
-            //Заменяем обратные слеши на прямые слеши
-            ImageService.Source = new BitmapImage(new Uri(fullPath, UriKind.Absolute));
-            TitleServiceTBox.Text = ser.Title.ToString();
-            CostTBox.Text = ser.Cost.ToString();
-            TimeTBox.Text = ser.DurationInMinutes.ToString();
-            DiscountTBox.Text = ser.Discount.ToString();
         }
 
         private void Button_Click_Exit(object sender, RoutedEventArgs e)
@@ -51,11 +37,13 @@ namespace schoolServiceUchebkaMukachev.Pages
 
         private void Button_Click_Save(object sender, RoutedEventArgs e)
         {
+            Service ser = new Service();
             ser.Title = TitleServiceTBox.Text;
             ser.Cost = Convert.ToDecimal(CostTBox.Text);
             ser.DurationInMinutes = Convert.ToInt32(TimeTBox.Text);
             ser.Discount = Convert.ToInt32(DiscountTBox.Text);
             ser.ServicePhotoID = App.db.ServicePhoto.FirstOrDefault(x => x.PhotoPath == selectedImagePath).ID;
+            App.db.Service.Add(ser);
             App.db.SaveChanges();
             NavigationService.Navigate(new Pages.MainPage());
         }
