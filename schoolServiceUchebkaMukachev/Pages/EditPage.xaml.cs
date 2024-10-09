@@ -55,7 +55,17 @@ namespace schoolServiceUchebkaMukachev.Pages
             ser.Cost = Convert.ToDecimal(CostTBox.Text);
             ser.DurationInMinutes = Convert.ToInt32(TimeTBox.Text);
             ser.Discount = Convert.ToInt32(DiscountTBox.Text);
-            ser.ServicePhotoID = App.db.ServicePhoto.FirstOrDefault(x => x.PhotoPath == selectedImagePath).ID;
+
+            // Проверяем, был ли выбран новый путь для изображения
+            if (!string.IsNullOrEmpty(selectedImagePath))
+            {
+                var servicePhoto = App.db.ServicePhoto.FirstOrDefault(x => x.PhotoPath == selectedImagePath);
+                if (servicePhoto != null) // Проверка, существует ли фото с таким путем
+                {
+                    ser.ServicePhotoID = servicePhoto.ID;
+                }
+            }
+
             App.db.SaveChanges();
             NavigationService.Navigate(new Pages.MainPage());
         }
