@@ -33,6 +33,7 @@ namespace schoolServiceUchebkaMukachev.Pages
             DiscountRs.Maximum = Convert.ToDouble(App.db.Service.Max(i => i.Discount));
             DiscountRs.UpperValue = DiscountRs.Maximum;
             DiscountRs.LowerValue = DiscountRs.Minimum;
+            var  services = App.db.Service.ToList();
             LoadServices();
         }
         private void LoadServices()
@@ -42,12 +43,10 @@ namespace schoolServiceUchebkaMukachev.Pages
         }
         public void UpdatePage(List<Service> services)
         {
-
-
             ServiceWpar.Children.Clear();
             foreach (var item in services)
             {
-                ServiceWpar.Children.Add(new ServiceUserControl(item));
+                ServiceWpar.Children.Add(new ServiceUserControl(item, () => UpdatePage(App.db.Service.ToList())));
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using schoolServiceUchebkaMukachev.DB;
+using schoolServiceUchebkaMukachev.Pages;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,12 +25,12 @@ namespace schoolServiceUchebkaMukachev.Controls
     {
         private NavigationService _navigationService;
         private Service ser;
-        private Action _isRemove;
-        public ServiceUserControl(Service service)
+        private Action _onRemove;
+        public ServiceUserControl(Service service, Action onRemove)
         {
             InitializeComponent();
             ser = service;
-            
+            _onRemove = onRemove;
             TitleServiceTB.Text = ser.Title.ToString();
 
             // Получить путь к папке "ресурс" относительно папки, в которой находится исполняемый файл
@@ -41,7 +42,7 @@ namespace schoolServiceUchebkaMukachev.Controls
             //Заменяем обратные слеши на прямые слеши
             ImageService.Source = new BitmapImage(new Uri(fullPath, UriKind.Absolute));
 
-            if (ser.Discount != null)
+            if (ser.Discount != 0)
             {
                 //Зачёркнутый текст
                 textDecorate.Text = $"{ser.Cost.Value.ToString("0.#")}";
@@ -71,9 +72,8 @@ namespace schoolServiceUchebkaMukachev.Controls
         {
             App.db.Service.Remove(ser);
             App.db.SaveChanges();
-            _isRemove.Invoke();
             MessageBox.Show("Успешно удалено");
-
+            _onRemove?.Invoke();
         }
 
         private void Button_Click_Edit(object sender, RoutedEventArgs e)
