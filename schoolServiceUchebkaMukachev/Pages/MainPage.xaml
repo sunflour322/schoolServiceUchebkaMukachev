@@ -17,7 +17,11 @@
         </Grid.RowDefinitions>
 
         <Border Grid.Row="0" BorderBrush="#04a0ff" BorderThickness="1.5" Margin="5">
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10 0" FontWeight="ExtraBold" FontSize="30">Учебные услуги</TextBlock>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal">
+            <TextBlock  Margin="10 0" FontWeight="ExtraBold" FontSize="30">Учебные услуги</TextBlock>
+                <TextBlock Margin="140 10 0 0" FontWeight="ExtraBold" FontSize="20">Поиск: </TextBlock>
+                <TextBox Margin="10 10 0 0" Width="200" x:Name="SearchTb" TextChanged="SearchTb_TextChanged"></TextBox>
+            </StackPanel>
         </Border>
         <Border Grid.Row="1" BorderBrush="#04a0ff"
                 BorderThickness="1.5" Margin="5">

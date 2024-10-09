@@ -24,10 +24,14 @@ namespace schoolServiceUchebkaMukachev.Pages
         {
             InitializeComponent();
         }
-
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new MainPage());
+        }
+
+        private void ClientButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

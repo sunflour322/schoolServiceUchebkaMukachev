@@ -66,6 +66,7 @@ namespace schoolServiceUchebkaMukachev.Pages
                 }
             }
 
+
             App.db.SaveChanges();
             NavigationService.Navigate(new Pages.MainPage());
         }

@@ -15,10 +15,10 @@ namespace schoolServiceUchebkaMukachev.DB
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class schoolServiceEntities : DbContext
+    public partial class SchoolServiceMukachevEntities : DbContext
     {
-        public schoolServiceEntities()
-            : base("name=schoolServiceEntities")
+        public SchoolServiceMukachevEntities()
+            : base("name=SchoolServiceMukachevEntities")
         {
         }
     

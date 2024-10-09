@@ -25,11 +25,11 @@ namespace schoolServiceUchebkaMukachev.Controls
         private NavigationService _navigationService;
         private Service ser;
         private Action _isRemove;
-        public ServiceUserControl(Service service, Action isRemove)
+        public ServiceUserControl(Service service)
         {
             InitializeComponent();
             ser = service;
-            _isRemove = isRemove;
+            
             TitleServiceTB.Text = ser.Title.ToString();
 
             // Получить путь к папке "ресурс" относительно папки, в которой находится исполняемый файл

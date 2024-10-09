@@ -22,30 +22,34 @@ namespace schoolServiceUchebkaMukachev.Pages
     /// </summary>
     public partial class MainPage : Page
     {
-        public Action OnItemRemoved { get; set; }
+        
         public MainPage()
         {
             InitializeComponent();
-            DiscountRs.Minimum = Convert.ToDouble(App.db.Service.Min(i => i.Discount));
+            var minDiscount = App.db.Service.Where(i => i.Discount > 0).Min(i => (int?)i.Discount) ?? 0;
+
+            // Устанавливаем минимальное значение для DiscountRs, если найденное минимальное больше нуля
+            DiscountRs.Minimum = Convert.ToDouble(minDiscount);
             DiscountRs.Maximum = Convert.ToDouble(App.db.Service.Max(i => i.Discount));
             DiscountRs.UpperValue = DiscountRs.Maximum;
             DiscountRs.LowerValue = DiscountRs.Minimum;
-            //OnItemRemoved = () =>
-            //{
-            //    UpdatePage();
-            //};
-            //UpdatePage();
+            LoadServices();
         }
-        //public void UpdatePage()
-        //{
-          
+        private void LoadServices()
+        {
+            var services = App.db.Service.ToList(); // Получаем список услуг
+            UpdatePage(services); // Загружаем в интерфейс
+        }
+        public void UpdatePage(List<Service> services)
+        {
 
-        //    ServiceWpar.Children.Clear();
-        //    foreach (var item in App.db.Service)
-        //    {
-        //        ServiceWpar.Children.Add(new ServiceUserControl(item, OnItemRemoved));
-        //    }
-        //}
+
+            ServiceWpar.Children.Clear();
+            foreach (var item in services)
+            {
+                ServiceWpar.Children.Add(new ServiceUserControl(item));
+            }
+        }
 
         private void Create_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -54,37 +58,54 @@ namespace schoolServiceUchebkaMukachev.Pages
 
         private void DiscountRs_RangeSelectionChanged(object sender, MahApps.Metro.Controls.RangeSelectionChangedEventArgs<double> e)
         {
-
+            ServiceWpar.Children.Clear();
+            Sort();
         }
 
+        public void Sort()
+        {
+            
+                // Получаем текст для поиска по названию из TextBox (предполагается, что у вас есть TextBox для поиска)
+                var searchText = SearchTb.Text.ToLower(); // Приводим к нижнему регистру для корректного сравнения
+
+                // Получаем данные, фильтруя по диапазону скидок и по названию
+                var filteredServices = App.db.Service.Where(i =>
+                    i.Discount >= DiscountRs.LowerValue &&        // Фильтрация по скидкам
+                    i.Discount <= DiscountRs.UpperValue &&        // Фильтрация по скидкам
+                    i.Title.ToLower().Contains(searchText))       // Фильтрация по названию (поиск)
+                    .ToList();
+
+                // Применяем сортировку в зависимости от выбранного элемента ComboBox
+                var selectedSortOption = PriceCb.SelectedIndex; // Предполагается, что есть ComboBox для сортировки
+
+                switch (selectedSortOption)
+                {
+                    case 0: // Сортировка по цене (возрастание)
+                        filteredServices = filteredServices.OrderBy(service => service.Cost).ToList();
+                        break;
+                    case 1: // Сортировка по цене (убывание)
+                        filteredServices = filteredServices.OrderByDescending(service => service.Cost).ToList();
+                        break;
+                        // Можете добавить другие варианты сортировки, если нужно
+                }
+
+                // Обновляем отображение с отфильтрованными и отсортированными данными
+                UpdatePage(filteredServices);
+            
+        }
         
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var comboBox = sender as ComboBox;
-            if (comboBox == null) return; // Защита от ошибок при неверном приведении типов
-
-            var selectedSortOption = comboBox.SelectedItem?.ToString(); // Используйте оператор ?. для предотвращения ошибок при нулевом значении
-
-            IEnumerable<Service> sortedServices;
-
-            switch (selectedSortOption)
-            {
-                case "По цене (возрастание)":
-                    sortedServices = App.db.Service.OrderBy(service => service.Cost);
-                    break;
-                case "По цене (убывание)":
-                    sortedServices = App.db.Service.OrderByDescending(service => service.Cost);
-                    break;
-                
-            }
-
             ServiceWpar.Children.Clear();
-            foreach (var item in App.db.Service)
-            {
-                ServiceWpar.Children.Add(new ServiceUserControl(item, OnItemRemoved));
-            }
+            Sort();
 
+        }
+
+        private void SearchTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ServiceWpar.Children.Clear();
+            Sort();
         }
     }
 }

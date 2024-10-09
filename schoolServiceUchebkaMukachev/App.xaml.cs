@@ -14,6 +14,6 @@ namespace schoolServiceUchebkaMukachev
     /// </summary>
     public partial class App : Application
     {
-        public static schoolServiceEntities db = new schoolServiceEntities();
+        public static SchoolServiceMukachevEntities db = new SchoolServiceMukachevEntities();
     }
 }

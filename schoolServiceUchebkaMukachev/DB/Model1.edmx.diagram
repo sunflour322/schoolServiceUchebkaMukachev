@@ -4,18 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b2f59897b9a74c3cafd25c2b9ac44b1f" Name="Diagram1">
-        <EntityTypeShape EntityType="schoolServiceModel.Admin" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="schoolServiceModel.Client" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="schoolServiceModel.ClientService" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="schoolServiceModel.Gender" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="schoolServiceModel.Service" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="schoolServiceModel.ServicePhoto" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="schoolServiceModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="schoolServiceModel.FK_Client_Gender" ManuallyRouted="false" />
-        <AssociationConnector Association="schoolServiceModel.FK_ClientService_Client" ManuallyRouted="false" />
-        <AssociationConnector Association="schoolServiceModel.FK_ClientService_Service" ManuallyRouted="false" />
-        <AssociationConnector Association="schoolServiceModel.FK_Service_ServicePhoto" ManuallyRouted="false" />
+      <Diagram DiagramId="c5842616036f4b49a62bfe8e1f6fca67" Name="Diagram1">
+        <EntityTypeShape EntityType="SchoolServiceMukachevModel.Admin" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolServiceMukachevModel.Client" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolServiceMukachevModel.ClientService" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolServiceMukachevModel.Gender" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolServiceMukachevModel.Service" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolServiceMukachevModel.ServicePhoto" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolServiceMukachevModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="SchoolServiceMukachevModel.FK_Client_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolServiceMukachevModel.FK_ClientService_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolServiceMukachevModel.FK_ClientService_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolServiceMukachevModel.FK_Service_ServicePhoto" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
