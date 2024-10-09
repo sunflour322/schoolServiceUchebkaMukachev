@@ -32,7 +32,7 @@ namespace schoolServiceUchebkaMukachev.Pages
 
         private void Button_Click_Exit(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Pages.MainPage());
+            NavigationService.Navigate(new MainPage());
         }
 
         private void Button_Click_Save(object sender, RoutedEventArgs e)
@@ -45,7 +45,7 @@ namespace schoolServiceUchebkaMukachev.Pages
             ser.ServicePhotoID = App.db.ServicePhoto.FirstOrDefault(x => x.PhotoPath == selectedImagePath).ID;
             App.db.Service.Add(ser);
             App.db.SaveChanges();
-            NavigationService.Navigate(new Pages.MainPage());
+            NavigationService.Navigate(new MainPage());
         }
         private void Button_Click_Image(object sender, RoutedEventArgs e)
         {

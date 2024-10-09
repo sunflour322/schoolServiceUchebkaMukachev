@@ -1,8 +1,10 @@
-﻿using System;
+﻿using schoolServiceUchebkaMukachev.DB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -20,18 +22,34 @@ namespace schoolServiceUchebkaMukachev.Pages
     /// </summary>
     public partial class AuthorizationPage : Page
     {
+        public static List<Client> clients { get; set; }
+        
         public AuthorizationPage()
         {
             InitializeComponent();
         }
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new MainPage());
+            if(LoginTb.Text == "0000" && PasswordTb.Text == "0000")
+            {
+                NavigationService.Navigate(new MainPage());
+            }
+            else
+            {
+                string login = LoginTb.Text.Trim();
+                string password = PasswordTb.Text.Trim();
+                clients = new List<Client>(App.db.Client.ToList());
+                App.client = clients.FirstOrDefault(i => i.FirstName == login);
+                if (App.client != null)
+                {
+                    MainPage mainpage = new MainPage(App.client);
+                    NavigationService.Navigate(mainpage);
+                }
+                else
+                    MessageBox.Show("Такого сотрудника нет!!!");
+            }
         }
 
-        private void ClientButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
     }
 }

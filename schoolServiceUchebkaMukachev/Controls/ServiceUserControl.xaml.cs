@@ -26,9 +26,11 @@ namespace schoolServiceUchebkaMukachev.Controls
         private NavigationService _navigationService;
         private Service ser;
         private Action _onRemove;
-        public ServiceUserControl(Service service, Action onRemove)
+        private Client currentClient;
+        public ServiceUserControl(Service service, Action onRemove, Client currentClient)
         {
             InitializeComponent();
+            this.currentClient = currentClient;
             ser = service;
             _onRemove = onRemove;
             TitleServiceTB.Text = ser.Title.ToString();
@@ -57,6 +59,7 @@ namespace schoolServiceUchebkaMukachev.Controls
                 DiscountTB.Text = "";
             }
 
+            
         }
         private void NavigateTo(object content)
         {

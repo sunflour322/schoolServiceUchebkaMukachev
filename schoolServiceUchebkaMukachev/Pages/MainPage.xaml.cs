@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,10 +23,12 @@ namespace schoolServiceUchebkaMukachev.Pages
     /// </summary>
     public partial class MainPage : Page
     {
-        
-        public MainPage()
+        public Client client;
+        public DbSet<Client> currentUser;
+        public MainPage(Client currentUser)
         {
             InitializeComponent();
+            client = currentUser;
             var minDiscount = App.db.Service.Where(i => i.Discount > 0).Min(i => (int?)i.Discount) ?? 0;
 
             // Устанавливаем минимальное значение для DiscountRs, если найденное минимальное больше нуля
@@ -46,7 +49,7 @@ namespace schoolServiceUchebkaMukachev.Pages
             ServiceWpar.Children.Clear();
             foreach (var item in services)
             {
-                ServiceWpar.Children.Add(new ServiceUserControl(item, () => UpdatePage(App.db.Service.ToList())));
+                ServiceWpar.Children.Add(new ServiceUserControl(item, () => UpdatePage(App.db.Service.ToList()),currentUser));
             }
         }
 
