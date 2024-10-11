@@ -25,7 +25,7 @@ namespace schoolServiceUchebkaMukachev.Pages
     public partial class ClientMainPage : Page
     {
         
-        public DbSet<Client> currentUser;
+        
         public List<ClientService> currentUserServices;
         public ClientMainPage()
         {
@@ -35,7 +35,7 @@ namespace schoolServiceUchebkaMukachev.Pages
             // Устанавливаем минимальное значение для DiscountRs, если найденное минимальное больше нуля
             currentUserServices = App.db.ClientService.Where(x => x.ClientID == App.client.ID).ToList();
             UpdatePage(currentUserServices);
-
+            
             
         }
         

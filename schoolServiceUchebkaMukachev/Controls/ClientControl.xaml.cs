@@ -22,15 +22,14 @@ namespace schoolServiceUchebkaMukachev.Controls
     /// </summary>
     public partial class ClientControl : UserControl
     {
-        private NavigationService _navigationService;
         private Service ser;
         private ClientService _clientService;
-        private Client _currentClient;
         public ClientControl(ClientService clientService)
         {
             InitializeComponent();
             
             ser = App.db.Service.FirstOrDefault(x => x.ID == clientService.ServiceID);
+            
             _clientService = App.db.ClientService.FirstOrDefault(x => x.ServiceID == ser.ID);
             TitleServiceTB.Text = ser.Title.ToString();
 
@@ -58,7 +57,7 @@ namespace schoolServiceUchebkaMukachev.Controls
                 DiscountTB.Text = "";
             }
             StartTimeTb.Text = "Время начала " + Convert.ToString(_clientService.StartTime);
-
+            
         }
         
     }
