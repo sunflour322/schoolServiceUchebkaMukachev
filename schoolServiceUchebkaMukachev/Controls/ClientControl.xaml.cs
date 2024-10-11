@@ -1,5 +1,4 @@
 ﻿using schoolServiceUchebkaMukachev.DB;
-using schoolServiceUchebkaMukachev.Pages;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,19 +18,20 @@ using System.Windows.Shapes;
 namespace schoolServiceUchebkaMukachev.Controls
 {
     /// <summary>
-    /// Логика взаимодействия для ServiceUserControl.xaml
+    /// Логика взаимодействия для ClientControl.xaml
     /// </summary>
-    public partial class ServiceUserControl : UserControl
+    public partial class ClientControl : UserControl
     {
         private NavigationService _navigationService;
         private Service ser;
-        private Action _onRemove;
-        
-        public ServiceUserControl(Service service, Action onRemove)
+        private ClientService _clientService;
+        private Client _currentClient;
+        public ClientControl(ClientService clientService)
         {
             InitializeComponent();
-            ser = service;
-            _onRemove = onRemove;
+            
+            ser = App.db.Service.FirstOrDefault(x => x.ID == clientService.ServiceID);
+            _clientService = App.db.ClientService.FirstOrDefault(x => x.ServiceID == ser.ID);
             TitleServiceTB.Text = ser.Title.ToString();
 
             // Получить путь к папке "ресурс" относительно папки, в которой находится исполняемый файл
@@ -57,30 +57,9 @@ namespace schoolServiceUchebkaMukachev.Controls
                 CostAndTimeTB.Text = $"{ser.Cost.Value.ToString("0.#")} рублей за {ser.DurationInMinutes.ToString()} минут";
                 DiscountTB.Text = "";
             }
+            StartTimeTb.Text = "Время начала " + Convert.ToString(_clientService.StartTime);
 
-            
         }
-        private void NavigateTo(object content)
-        {
-            Window window = Window.GetWindow(this);
-
-            if (window == null)
-                return;
-            Frame mainFrame = LogicalTreeHelper.FindLogicalNode(window, "MainFrame") as Frame;
-            mainFrame?.Navigate(content);
-        }
-
-        private void Button_Click_Delete(object sender, RoutedEventArgs e)
-        {
-            App.db.Service.Remove(ser);
-            App.db.SaveChanges();
-            MessageBox.Show("Успешно удалено");
-            _onRemove?.Invoke();
-        }
-
-        private void Button_Click_Edit(object sender, RoutedEventArgs e)
-        {
-            NavigateTo(new Pages.EditPage(ser));
-        }
+        
     }
 }

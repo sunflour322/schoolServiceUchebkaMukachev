@@ -42,8 +42,8 @@ namespace schoolServiceUchebkaMukachev.Pages
                 App.client = clients.FirstOrDefault(i => i.FirstName == login);
                 if (App.client != null)
                 {
-                    MainPage mainpage = new MainPage(App.client);
-                    NavigationService.Navigate(mainpage);
+                    
+                    NavigationService.Navigate(new ClientMainPage());
                 }
                 else
                     MessageBox.Show("Такого сотрудника нет!!!");

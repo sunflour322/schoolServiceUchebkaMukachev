@@ -23,12 +23,10 @@ namespace schoolServiceUchebkaMukachev.Pages
     /// </summary>
     public partial class MainPage : Page
     {
-        public Client client;
-        public DbSet<Client> currentUser;
-        public MainPage(Client currentUser)
+        
+        public MainPage()
         {
             InitializeComponent();
-            client = currentUser;
             var minDiscount = App.db.Service.Where(i => i.Discount > 0).Min(i => (int?)i.Discount) ?? 0;
 
             // Устанавливаем минимальное значение для DiscountRs, если найденное минимальное больше нуля
@@ -49,7 +47,7 @@ namespace schoolServiceUchebkaMukachev.Pages
             ServiceWpar.Children.Clear();
             foreach (var item in services)
             {
-                ServiceWpar.Children.Add(new ServiceUserControl(item, () => UpdatePage(App.db.Service.ToList()),currentUser));
+                ServiceWpar.Children.Add(new ServiceUserControl(item, () => UpdatePage(App.db.Service.ToList())));
             }
         }
 

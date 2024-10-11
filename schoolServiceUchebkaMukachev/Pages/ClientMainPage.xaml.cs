@@ -1,6 +1,10 @@
-﻿using System;
+﻿using schoolServiceUchebkaMukachev.Controls;
+using schoolServiceUchebkaMukachev.DB;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,9 +24,34 @@ namespace schoolServiceUchebkaMukachev.Pages
     /// </summary>
     public partial class ClientMainPage : Page
     {
+        
+        public DbSet<Client> currentUser;
+        public List<ClientService> currentUserServices;
         public ClientMainPage()
         {
             InitializeComponent();
+            
+
+            // Устанавливаем минимальное значение для DiscountRs, если найденное минимальное больше нуля
+            currentUserServices = App.db.ClientService.Where(x => x.ClientID == App.client.ID).ToList();
+            UpdatePage(currentUserServices);
+
+            
         }
+        
+        public void UpdatePage(List<ClientService> clientServices)
+        {
+            ServiceWpar.Children.Clear();
+            foreach (var item in clientServices)
+            {
+                ServiceWpar.Children.Add(new ClientControl(item));
+            }
+        }
+
+        
+        
+
+        
+
     }
 }
