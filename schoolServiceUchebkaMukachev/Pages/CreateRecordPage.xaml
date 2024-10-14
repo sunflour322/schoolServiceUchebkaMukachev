@@ -27,8 +27,9 @@
             </ScrollViewer>
         </Border>
         <Border Grid.Row="2"  BorderBrush="#04a0ff" BorderThickness="1.5" Margin="5">
-            <StackPanel Orientation="Horizontal" >
+            <StackPanel Orientation="Horizontal">
                 <Button VerticalAlignment="Top" Width="150" Height="50" Content="Список услуг" Click="Create_Button_Click" HorizontalAlignment="Left" Margin="20" Style="{DynamicResource CustomButton}"></Button>
+                <Button VerticalAlignment="Top" Width="250" Height="50" Content="Записи на ближайшее время"  HorizontalAlignment="Left" Margin="20" Style="{DynamicResource CustomButton}" Click="Button_Click"></Button>
             </StackPanel>
         </Border>
     </Grid>

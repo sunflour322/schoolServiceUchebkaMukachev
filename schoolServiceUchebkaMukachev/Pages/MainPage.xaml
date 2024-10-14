@@ -31,9 +31,12 @@
         </Border>
         <Border Grid.Row="2"  BorderBrush="#04a0ff" BorderThickness="1.5" Margin="5">
             <StackPanel Orientation="Horizontal" >
-                <Button VerticalAlignment="Top" Width="150" Height="50" Content="Добавить" Click="Create_Button_Click" HorizontalAlignment="Left" Margin="20" Style="{DynamicResource CustomButton}"></Button>
+                <StackPanel Orientation="Horizontal">
+                    <Button VerticalAlignment="Top" Width="150" Height="50" Content="Добавить" Click="Create_Button_Click" HorizontalAlignment="Left" Margin="20" Style="{DynamicResource CustomButton}"></Button>
+                    <Button VerticalAlignment="Top" Width="150" Height="50" Content="Записать"  HorizontalAlignment="Left" Margin="20" Style="{DynamicResource CustomButton}" Click="Button_Click"></Button>
+                </StackPanel>
                 
-                <StackPanel Margin="200 15 0 0" Orientation="Vertical">
+                <StackPanel Margin="20 15 0 0" Orientation="Vertical">
                     <ComboBox Margin="0 0 0 20" Width="150" x:Name="PriceCb" HorizontalAlignment="Right" SelectionChanged="ComboBox_SelectionChanged">
                         <Label>по возрастанию</Label>
                         <Label>по убыванию</Label>

@@ -16,8 +16,10 @@
                 <TextBlock Margin="10 10" FontSize="20" x:Name="TitleServiceTB" TextWrapping="Wrap" Width="430" Height="60">Наименование услуги</TextBlock>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Margin="10 0" FontSize="20" x:Name="textDecorate"></TextBlock>
-                    <TextBlock  FontSize="20" x:Name="CostAndTimeTB">800 за 30 минут</TextBlock>
+                    <TextBlock  FontSize="20" x:Name="CostAndTimeTB">30 минут</TextBlock>
                 </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="10 0">
+                    <TextBlock FontSize="16" Margin="10">Клиент</TextBlock>
                 <ComboBox x:Name="ClientComboBox" HorizontalAlignment="Left" Margin="10" Width="200" SelectionChanged="ClientComboBox_SelectionChanged">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
@@ -33,7 +35,17 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <Button Width="120" HorizontalAlignment="Left" Margin="10" Click="Button_Click">Записать</Button>
+                
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" >
+                    <TextBlock FontSize="16" Margin="10 0">Дата и время</TextBlock>
+                    <StackPanel Orientation="Vertical">
+                    <TextBox x:Name="DateTimeTextBox" Width="160" Height="20" TextChanged="DateTimeTextBox_TextChanged" />
+                    <TextBlock x:Name="ErrorTextBlock" Foreground="Red" Visibility="Collapsed" Margin="10 5"/>
+                    </StackPanel>
+                </StackPanel>
+                <Button Width="120" HorizontalAlignment="Left" Margin="10 5" Click="Button_Click">Записать</Button>
+                
             </StackPanel>
         </StackPanel>
     </Grid>

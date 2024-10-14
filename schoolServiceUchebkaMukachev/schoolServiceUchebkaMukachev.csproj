@@ -114,6 +114,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\NearRecordPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\RecordControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -132,6 +136,9 @@
     </Compile>
     <Compile Include="Controls\ClientControl.xaml.cs">
       <DependentUpon>ClientControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NearRecordPage.xaml.cs">
+      <DependentUpon>NearRecordPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\RecordControl.xaml.cs">
       <DependentUpon>RecordControl.xaml</DependentUpon>

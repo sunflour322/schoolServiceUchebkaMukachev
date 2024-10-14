@@ -30,6 +30,7 @@
           <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="GenderCode" Type="nchar" MaxLength="1" Nullable="false" />
           <Property Name="PhotoPath" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="ClientService">
           <Key>
@@ -213,6 +214,7 @@
           <Property Name="PhotoPath" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Gender" Relationship="Self.FK_Client_Gender" FromRole="Client" ToRole="Gender" />
           <NavigationProperty Name="ClientService" Relationship="Self.FK_ClientService_Client" FromRole="Client" ToRole="ClientService" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ClientService">
           <Key>
@@ -400,6 +402,7 @@
           <EntitySetMapping Name="Client">
             <EntityTypeMapping TypeName="SchoolServiceMukachevModel.Client">
               <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />

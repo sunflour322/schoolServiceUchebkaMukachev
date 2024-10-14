@@ -1,6 +1,7 @@
 ﻿using schoolServiceUchebkaMukachev.DB;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,7 @@ namespace schoolServiceUchebkaMukachev.Controls
         private Service ser;
         private ClientService _clientService;
         private Client _client;
+        private string input;
         public RecordControl(ClientService clientService)
         {
             InitializeComponent();
@@ -50,15 +52,41 @@ namespace schoolServiceUchebkaMukachev.Controls
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if(_client != null && ErrorTextBlock.Visibility != Visibility.Visible)
+            {
+
             ClientService clientService = new ClientService();
             clientService.ClientID = _client.ID;
             clientService.ServiceID = ser.ID;
-            clientService.StartTime = DateTime.Today;
+            clientService.StartTime = Convert.ToDateTime(input);
             clientService.Comment = null;
             App.db.ClientService.Add(clientService);
             App.db.SaveChanges();
+                MessageBox.Show("Успешно");
+            }
+            else
+            {
+                MessageBox.Show("Заполните данные");
+            }
         }
+        private void DateTimeTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            input = DateTimeTextBox.Text;
 
+            // Попытка преобразовать текст в дату и время
+            if (DateTime.TryParseExact(input, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime result))
+            {
+                // Если дата и время введены правильно
+                ErrorTextBlock.Visibility = Visibility.Collapsed;
+                ErrorTextBlock.Text = "";
+            }
+            else
+            {
+                // Если дата и время введены неверно
+                ErrorTextBlock.Visibility = Visibility.Visible;
+                ErrorTextBlock.Text = "Формат: dd/MM/yyyy HH:mm";
+            }
+        }
         private void ClientComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selectedClient = (Client)ClientComboBox.SelectedItem;
@@ -71,16 +99,10 @@ namespace schoolServiceUchebkaMukachev.Controls
                                                                 && c.FirstName == selectedClient.FirstName
                                                                 && c.Patronymic == selectedClient.Patronymic);
                 _client = dbClient;
-                if (dbClient != null)
-                {
-                    MessageBox.Show($"Клиент найден в базе данных: {dbClient.LastName} {dbClient.FirstName} {dbClient.Patronymic}");
-                    
-                }
-                else
-                {
-                    MessageBox.Show("Клиент не найден в базе данных.");
-                }
+                
             }
         }
+
+        
     }
 }

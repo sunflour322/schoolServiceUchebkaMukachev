@@ -107,5 +107,10 @@ namespace schoolServiceUchebkaMukachev.Pages
             ServiceWpar.Children.Clear();
             Sort();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new CreateRecordPage());
+        }
     }
 }

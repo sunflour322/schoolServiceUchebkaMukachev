@@ -38,14 +38,22 @@ namespace schoolServiceUchebkaMukachev.Pages
         private void Button_Click_Save(object sender, RoutedEventArgs e)
         {
             Service ser = new Service();
-            ser.Title = TitleServiceTBox.Text;
-            ser.Cost = Convert.ToDecimal(CostTBox.Text);
-            ser.DurationInMinutes = Convert.ToInt32(TimeTBox.Text);
-            ser.Discount = Convert.ToInt32(DiscountTBox.Text);
-            ser.ServicePhotoID = App.db.ServicePhoto.FirstOrDefault(x => x.PhotoPath == selectedImagePath).ID;
-            App.db.Service.Add(ser);
-            App.db.SaveChanges();
-            NavigationService.Navigate(new MainPage());
+            if (TitleServiceTBox.Text != "" && CostTBox.Text != "" && TimeTBox.Text != "" && DiscountTB.Text != "" && selectedImagePath != null)
+            {
+
+                ser.Title = TitleServiceTBox.Text;
+                ser.Cost = Convert.ToDecimal(CostTBox.Text);
+                ser.DurationInMinutes = Convert.ToInt32(TimeTBox.Text);
+                ser.Discount = Convert.ToInt32(DiscountTBox.Text);
+                ser.ServicePhotoID = App.db.ServicePhoto.FirstOrDefault(x => x.PhotoPath == selectedImagePath).ID;
+                App.db.Service.Add(ser);
+                App.db.SaveChanges();
+                NavigationService.Navigate(new MainPage());
+            }
+            else
+            {
+                MessageBox.Show("Заполните данные");
+            }
         }
         private void Button_Click_Image(object sender, RoutedEventArgs e)
         {

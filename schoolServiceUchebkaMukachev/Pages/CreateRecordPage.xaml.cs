@@ -28,14 +28,14 @@ namespace schoolServiceUchebkaMukachev.Pages
             InitializeComponent();
 
 
-            // Устанавливаем минимальное значение для DiscountRs, если найденное минимальное больше нуля
+            
             currentUserServices = App.db.ClientService.ToList();
-            UpdatePage(currentUserServices);
+            RecordPage(currentUserServices);
 
 
         }
 
-        public void UpdatePage(List<ClientService> clientServices)
+        public void RecordPage(List<ClientService> clientServices)
         {
             ServiceWpar.Children.Clear();
             foreach (var item in clientServices)
@@ -46,7 +46,27 @@ namespace schoolServiceUchebkaMukachev.Pages
 
         private void Create_Button_Click(object sender, RoutedEventArgs e)
         {
+            NavigationService.Navigate(new MainPage());
+        }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DateTime today = DateTime.Now.Date; // Начало сегодняшнего дня
+            DateTime endOfTomorrow = today.AddDays(2).Date.AddTicks(-1); // Конец завтрашнего дня (23:59:59)
+
+            var filteredRecords = App.db.ClientService
+                .Where(x => x.StartTime >= today && x.StartTime <= endOfTomorrow) // Убедитесь, что год 2024
+                .ToList();
+            NearRecord(filteredRecords);
+
+        }
+        public void NearRecord(List<ClientService> clientServices)
+        {
+            ServiceWpar.Children.Clear();
+            foreach (var item in clientServices)
+            {
+                ServiceWpar.Children.Add(new NearRecordPage(item));
+            }
         }
     }
 }

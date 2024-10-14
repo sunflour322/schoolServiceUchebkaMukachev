@@ -39,7 +39,7 @@ namespace schoolServiceUchebkaMukachev.Pages
                 string login = LoginTb.Text.Trim();
                 string password = PasswordTb.Text.Trim();
                 clients = new List<Client>(App.db.Client.ToList());
-                App.client = clients.FirstOrDefault(i => i.FirstName == login);
+                App.client = clients.FirstOrDefault(i => i.FirstName == login && i.Password == password);
                 if (App.client != null)
                 {
                     

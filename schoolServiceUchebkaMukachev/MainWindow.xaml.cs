@@ -24,7 +24,7 @@ namespace schoolServiceUchebkaMukachev
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Navigate(new Pages.CreateRecordPage());
+            MainFrame.Navigate(new Pages.AuthorizationPage());
         }
     }
 }

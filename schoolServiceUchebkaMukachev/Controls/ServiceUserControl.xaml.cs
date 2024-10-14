@@ -73,7 +73,7 @@ namespace schoolServiceUchebkaMukachev.Controls
         private void Button_Click_Delete(object sender, RoutedEventArgs e)
         {
             ClientService clientService = App.db.ClientService.FirstOrDefault(x => x.ServiceID == ser.ID);
-            if(ser.ID != clientService.ServiceID)
+            if(clientService == null)
             {
             App.db.Service.Remove(ser);
             App.db.SaveChanges();
