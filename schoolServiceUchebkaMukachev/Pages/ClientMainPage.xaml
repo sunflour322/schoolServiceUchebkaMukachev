@@ -12,6 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="5*"/>
             <RowDefinition Height="30*"/>
+            <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
 
         <Border Grid.Row="0" BorderBrush="#04a0ff" BorderThickness="1.5" Margin="5">
@@ -25,6 +26,10 @@
                 <WrapPanel Name ="ServiceWpar" HorizontalAlignment="Center" ItemHeight="230" ItemWidth="680"/>
             </ScrollViewer>
         </Border>
-        
+        <Border Grid.Row="2"  BorderBrush="#04a0ff" BorderThickness="1.5" Margin="5">
+            
+                    <Button VerticalAlignment="Center" Width="150" Height="50" Content="Выход"  HorizontalAlignment="Center" Margin="20 0 0 5" Style="{DynamicResource CustomButton}" Click="Exit_Button_Click"></Button>
+                
+        </Border>
     </Grid>
 </Page>

@@ -13,7 +13,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="5*"/>
             <RowDefinition Height="30*"/>
-            <RowDefinition Height="5*"/>
+            <RowDefinition Height="8*"/>
         </Grid.RowDefinitions>
 
         <Border Grid.Row="0" BorderBrush="#04a0ff" BorderThickness="1.5" Margin="5">
@@ -31,11 +31,15 @@
         </Border>
         <Border Grid.Row="2"  BorderBrush="#04a0ff" BorderThickness="1.5" Margin="5">
             <StackPanel Orientation="Horizontal" >
+                <StackPanel Orientation="Vertical">
+                    
                 <StackPanel Orientation="Horizontal">
                     <Button VerticalAlignment="Top" Width="150" Height="50" Content="Добавить" Click="Create_Button_Click" HorizontalAlignment="Left" Margin="20" Style="{DynamicResource CustomButton}"></Button>
                     <Button VerticalAlignment="Top" Width="150" Height="50" Content="Записать"  HorizontalAlignment="Left" Margin="20" Style="{DynamicResource CustomButton}" Click="Button_Click"></Button>
                 </StackPanel>
-                
+                <Button VerticalAlignment="Bottom" Width="150" Height="50" Content="Выход"  HorizontalAlignment="Left" Margin="20 0 0 5" Style="{DynamicResource CustomButton}" Click="Exit_Button_Click"></Button>
+                </StackPanel>
+
                 <StackPanel Margin="20 15 0 0" Orientation="Vertical">
                     <ComboBox Margin="0 0 0 20" Width="150" x:Name="PriceCb" HorizontalAlignment="Right" SelectionChanged="ComboBox_SelectionChanged">
                         <Label>по возрастанию</Label>

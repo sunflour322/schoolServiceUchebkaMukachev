@@ -29,7 +29,7 @@ namespace schoolServiceUchebkaMukachev.Pages
             InitializeComponent();
             var minDiscount = App.db.Service.Where(i => i.Discount > 0).Min(i => (int?)i.Discount) ?? 0;
 
-            // Устанавливаем минимальное значение для DiscountRs, если найденное минимальное больше нуля
+            
             DiscountRs.Minimum = Convert.ToDouble(minDiscount);
             DiscountRs.Maximum = Convert.ToDouble(App.db.Service.Max(i => i.Discount));
             DiscountRs.UpperValue = DiscountRs.Maximum;
@@ -39,8 +39,8 @@ namespace schoolServiceUchebkaMukachev.Pages
         }
         private void LoadServices()
         {
-            var services = App.db.Service.ToList(); // Получаем список услуг
-            UpdatePage(services); // Загружаем в интерфейс
+            var services = App.db.Service.ToList(); 
+            UpdatePage(services);
         }
         public void UpdatePage(List<Service> services)
         {
@@ -111,6 +111,10 @@ namespace schoolServiceUchebkaMukachev.Pages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new CreateRecordPage());
+        }
+        private void Exit_Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AuthorizationPage());
         }
     }
 }

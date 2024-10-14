@@ -48,10 +48,9 @@ namespace schoolServiceUchebkaMukachev.Pages
             }
         }
 
-        
-        
-
-        
-
+        private void Exit_Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AuthorizationPage());
+        }
     }
 }
