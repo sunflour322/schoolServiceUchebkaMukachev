@@ -114,6 +114,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\RecordControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ServiceUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -128,6 +132,9 @@
     </Compile>
     <Compile Include="Controls\ClientControl.xaml.cs">
       <DependentUpon>ClientControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RecordControl.xaml.cs">
+      <DependentUpon>RecordControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ServiceUserControl.xaml.cs">
       <DependentUpon>ServiceUserControl.xaml</DependentUpon>
@@ -190,6 +197,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\CreateRecordPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\EditPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -216,6 +227,9 @@
     </Compile>
     <Compile Include="Pages\CreatePage.xaml.cs">
       <DependentUpon>CreatePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CreateRecordPage.xaml.cs">
+      <DependentUpon>CreateRecordPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\EditPage.xaml.cs">
       <DependentUpon>EditPage.xaml</DependentUpon>
